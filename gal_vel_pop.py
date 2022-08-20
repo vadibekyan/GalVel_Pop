@@ -234,12 +234,12 @@ def UVW_prob_err_sample(display = False, N = 1000):
         
     """
 
-    input_table = pd.read_csv('gal_vel_param.rdb', sep = '\t')
+    input_table = pd.read_csv('gal_vel_pop_param.rdb', sep = '\t')
 
 
     output_table = pd.DataFrame(index=range(0,len(input_table.star)), 
-                            data = np.zeros((len(input_table.star),24)), 
-                            columns=['U', 'U_err', 'V', 'V_err', 'W', 'W_err', 
+                            data = np.zeros((len(input_table.star),25)), 
+                            columns=['star', 'U', 'U_err', 'V', 'V_err', 'W', 'W_err', 
                                     'Pthin_m', 'Pthin_m_err', 'Pthick_m', 'Pthick_m_err', 'Phalo_m', 'Phalo_m_err',
                                     'Pthin_b', 'Pthin_b_err', 'Pthick_b', 'Pthick_b_err', 'Phalo_b', 'Phalo_b_err',
                                     'Pthin_r', 'Pthin_r_err', 'Pthick_r', 'Pthick_r_err', 'Phalo_r', 'Phalo_r_err'])
@@ -248,6 +248,8 @@ def UVW_prob_err_sample(display = False, N = 1000):
     for i, star in enumerate(input_table.star):
 
         print (f'{i+1} of {len(input_table.star)}: {star}')
+
+        output_table['star'][i] = star
 
         output_table['U'][i], output_table['U_err'][i], output_table['V'][i], output_table['V_err'][i], output_table['W'][i], output_table['W_err'][i], output_table['Pthin_m'][i], output_table['Pthin_m_err'][i], output_table['Pthick_m'][i], output_table['Pthick_m_err'][i], output_table['Phalo_m'][i], output_table['Phalo_m_err'][i], output_table['Pthin_b'][i], output_table['Pthin_b_err'][i], output_table['Pthick_b'][i], output_table['Pthick_b_err'][i], output_table['Phalo_b'][i], output_table['Phalo_b_err'][i], output_table['Pthin_r'][i], output_table['Pthin_r_err'][i], output_table['Pthick_r'][i], output_table['Pthick_r_err'][i], output_table['Phalo_r'][i], output_table['Phalo_r_err'][i] = \
                     UVW_prob_err(ra = input_table['ra'][i], dec = input_table['dec'][i], 
