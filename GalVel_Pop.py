@@ -107,7 +107,7 @@ def gal_population(U, V, W, char_vel='Mean'):
     sigmaW_b = np.array([16, 35, 90])
     Vasym_b = np.array([-15, -46, -220])
     
-    sigmaU_r = np.array([43, 67, 131])  # Robin et al. (2005)
+    sigmaU_r = np.array([43, 67, 131])  # Robin et al. (2003)
     sigmaV_r = np.array([28, 51, 106])
     sigmaW_r = np.array([17, 42, 85])
     Vasym_r = np.array([-9, -48, -220])
@@ -119,7 +119,7 @@ def gal_population(U, V, W, char_vel='Mean'):
 
     # Overall relative likelihoods of belonging to thin disk (D), thick disk (TD), and halo (H) populations in the solar neighborhood
     frac_b = np.array([0.9, 0.0985, 0.0015])  # Bensby et al. (2005)
-    frac_r = np.array([0.924, 0.07, 0.006])  # Robin et al. (2005)
+    frac_r = np.array([0.924, 0.07, 0.006])  # Robin et al. (2003)
     frac_mean = np.add(frac_b, frac_r) / 2  # Mean
 
     if char_vel == "Bensby":
