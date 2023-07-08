@@ -208,6 +208,10 @@ def UVW_prob_err(ra, dec, pmra, pmdec, vrad, plx, ra_err=None, dec_err=None, pmr
     UVW_prob = pd.DataFrame(index=range(0, N), data=np.zeros((N, 12)), columns=['U', 'V', 'W', 'Pthin_m', 'Pthick_m', 'Phalo_m', 'Pthin_b', 'Pthick_b', 'Phalo_b', 'Pthin_r', 'Pthick_r', 'Phalo_r'])
 
     for i in range(N):
+        """
+        This part has to be optimized generating N random values at ones!
+        Might need to vecorize some functions, though!
+        """
         # Generate random samples for the parameters based on their uncertainties
         ra_tmp = np.random.normal(ra, ra_err, 1)[0] if ra_err is not None and ra_err == ra_err else ra
         dec_tmp = np.random.normal(dec, dec_err, 1)[0] if dec_err is not None and dec_err == dec_err else dec
