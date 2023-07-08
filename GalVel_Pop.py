@@ -4,9 +4,14 @@ import numpy as np
 import pandas as pd
 
 
+<<<<<<< HEAD
 def UVW(ra=None, dec=None, pmra=None, pmdec=None, vrad=None, plx=None, warnings=True):
     """
 
+=======
+def UVW(ra, dec, pmra, pmdec, vrad, plx, warnings=True):
+    """
+>>>>>>> 2f92fd2784cbd09e09dc8aace376721feeb0b74b
     This function determines the UVW galactic space velocity components with respect to the local standard of rest (LSR), 
     using transformations from equatorial to galactic coordinates. 
 
@@ -78,9 +83,14 @@ def UVW(ra=None, dec=None, pmra=None, pmdec=None, vrad=None, plx=None, warnings=
     return UVW_lsr
 
 
+<<<<<<< HEAD
 def gal_population(U=None, V=None, W=None, char_vel='Mean'):
     """
 
+=======
+def gal_population(U, V, W, char_vel='Mean'):
+    """
+>>>>>>> 2f92fd2784cbd09e09dc8aace376721feeb0b74b
     The code calculates the relative probabilities of belonging to different galactic 
     populations based on the given U, V, and W galactic space velocity components. 
     It uses characteristic velocity dispersion values, asymmetric drift values, and 
@@ -109,7 +119,11 @@ def gal_population(U=None, V=None, W=None, char_vel='Mean'):
     sigmaW_b = np.array([16, 35, 90])
     Vasym_b = np.array([-15, -46, -220])
     
+<<<<<<< HEAD
     sigmaU_r = np.array([43, 67, 131])  # Robin et al. (2005)
+=======
+    sigmaU_r = np.array([43, 67, 131])  # Robin et al. (2003)
+>>>>>>> 2f92fd2784cbd09e09dc8aace376721feeb0b74b
     sigmaV_r = np.array([28, 51, 106])
     sigmaW_r = np.array([17, 42, 85])
     Vasym_r = np.array([-9, -48, -220])
@@ -121,7 +135,11 @@ def gal_population(U=None, V=None, W=None, char_vel='Mean'):
 
     # Overall relative likelihoods of belonging to thin disk (D), thick disk (TD), and halo (H) populations in the solar neighborhood
     frac_b = np.array([0.9, 0.0985, 0.0015])  # Bensby et al. (2005)
+<<<<<<< HEAD
     frac_r = np.array([0.924, 0.07, 0.006])  # Robin et al. (2005)
+=======
+    frac_r = np.array([0.924, 0.07, 0.006])  # Robin et al. (2003)
+>>>>>>> 2f92fd2784cbd09e09dc8aace376721feeb0b74b
     frac_mean = np.add(frac_b, frac_r) / 2  # Mean
 
     if char_vel == "Bensby":
@@ -166,9 +184,14 @@ def gal_population(U=None, V=None, W=None, char_vel='Mean'):
 
 
 
+<<<<<<< HEAD
 def UVW_prob_err(ra=None, dec=None, pmra=None, pmdec=None, vrad=None, plx=None, ra_err=None, dec_err=None, pmra_err=None, pmdec_err=None, vrad_err=None, plx_err=None, display=True, N=1000):
     """
 
+=======
+def UVW_prob_err(ra, dec, pmra, pmdec, vrad, plx, ra_err=None, dec_err=None, pmra_err=None, pmdec_err=None, vrad_err=None, plx_err=None, display=True, N=1000):
+    """
+>>>>>>> 2f92fd2784cbd09e09dc8aace376721feeb0b74b
     The code calculates the mean and standard deviation of the U, V, and W galactic 
     space velocity components and the relative probabilities of belonging to different 
     galactic populations (Thin disk, Thick disk, and Halo) using Monte Carlo simulations. 
@@ -211,6 +234,13 @@ def UVW_prob_err(ra=None, dec=None, pmra=None, pmdec=None, vrad=None, plx=None, 
     UVW_prob = pd.DataFrame(index=range(0, N), data=np.zeros((N, 12)), columns=['U', 'V', 'W', 'Pthin_m', 'Pthick_m', 'Phalo_m', 'Pthin_b', 'Pthick_b', 'Phalo_b', 'Pthin_r', 'Pthick_r', 'Phalo_r'])
 
     for i in range(N):
+<<<<<<< HEAD
+=======
+        """
+        This part has to be optimized generating N random values at ones!
+        Might need to vecorize some functions, though!
+        """
+>>>>>>> 2f92fd2784cbd09e09dc8aace376721feeb0b74b
         # Generate random samples for the parameters based on their uncertainties
         ra_tmp = np.random.normal(ra, ra_err, 1)[0] if ra_err is not None and ra_err == ra_err else ra
         dec_tmp = np.random.normal(dec, dec_err, 1)[0] if dec_err is not None and dec_err == dec_err else dec
@@ -276,3 +306,24 @@ def UVW_prob_err(ra=None, dec=None, pmra=None, pmdec=None, vrad=None, plx=None, 
         UVW_prob_mean_std['Phalo_r'][0],
         UVW_prob_mean_std['Phalo_r'][1]
     )
+<<<<<<< HEAD
+=======
+
+if __name__ == '__main__':
+    """ Example of Tau Ceti"""
+
+    ra = 26.0170130
+    dec = -15.93747
+    pmra = -1721.728
+    pmdec = 854.963
+    vrad = -16.597
+    plx = 273.8097
+    ra_err = 0.1187
+    dec_err = 0.0832
+    pmra_err = 0.181
+    pmdec_err = 0.088
+    vrad_err = 0.0002
+    plx_err = 0.1701
+    
+    UVW_prob_err(ra, dec, pmra, pmdec, vrad, plx, ra_err, dec_err, pmra_err, pmdec_err, vrad_err, plx_err, display=True, N=1000)
+>>>>>>> 2f92fd2784cbd09e09dc8aace376721feeb0b74b
