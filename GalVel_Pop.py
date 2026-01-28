@@ -315,7 +315,7 @@ if __name__ == '__main__':
         "Phalo_r_mean", "Phalo_r_std"
     ]
 
-    with open("TOI-5961_UVW_population.txt", "w") as f:
+    with open("results.txt", "w") as f:
         f.write("# UVW velocities and Galactic population probabilities\n")
         f.write("# Units: km/s for U,V,W ; % for probabilities\n\n")
         for label, value in zip(labels, results):
