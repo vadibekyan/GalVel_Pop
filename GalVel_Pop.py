@@ -279,19 +279,46 @@ def UVW_prob_err(ra, dec, pmra, pmdec, vrad, plx, ra_err=None, dec_err=None, pmr
     )
 
 if __name__ == '__main__':
-    """ Example of Tau Ceti"""
 
-    ra = 26.0170130
-    dec = -15.93747
-    pmra = -1721.728
-    pmdec = 854.963
-    vrad = -16.597
-    plx = 273.8097
-    ra_err = 0.1187
-    dec_err = 0.0832
-    pmra_err = 0.181
-    pmdec_err = 0.088
-    vrad_err = 0.0002
-    plx_err = 0.1701
-    
-    UVW_prob_err(ra, dec, pmra, pmdec, vrad, plx, ra_err, dec_err, pmra_err, pmdec_err, vrad_err, plx_err, display=True, N=1000)
+    ra = 349.21594444808
+    dec = 5.69600346455
+    pmra = 22.924
+    pmdec = -27.149
+    vrad = -9.11
+    plx = 38.0407
+
+    ra_err = 0.0156
+    dec_err = 0.0122
+    pmra_err = 0.018
+    pmdec_err = 0.015
+    vrad_err = 0.30
+    plx_err = 0.0177
+
+    results = UVW_prob_err(
+        ra, dec, pmra, pmdec, vrad, plx,
+        ra_err, dec_err, pmra_err, pmdec_err, vrad_err, plx_err,
+        display=False, N=1000
+    )
+
+    labels = [
+        "U_mean", "U_std",
+        "V_mean", "V_std",
+        "W_mean", "W_std",
+        "Pthin_m_mean", "Pthin_m_std",
+        "Pthick_m_mean", "Pthick_m_std",
+        "Phalo_m_mean", "Phalo_m_std",
+        "Pthin_b_mean", "Pthin_b_std",
+        "Pthick_b_mean", "Pthick_b_std",
+        "Phalo_b_mean", "Phalo_b_std",
+        "Pthin_r_mean", "Pthin_r_std",
+        "Pthick_r_mean", "Pthick_r_std",
+        "Phalo_r_mean", "Phalo_r_std"
+    ]
+
+    with open("TOI-5961_UVW_population.txt", "w") as f:
+        f.write("# UVW velocities and Galactic population probabilities\n")
+        f.write("# Units: km/s for U,V,W ; % for probabilities\n\n")
+        for label, value in zip(labels, results):
+            f.write(f"{label:20s} = {value}\n")
+
+    print("Results saved to results.txt")
